@@ -5,6 +5,7 @@ var Form = {
       status = response.status;
 
       if (status == 'complete') {
+        Form.Preloader.hide();
         $('#form-submit').prop('disabled', false);
 
         if (response.result != undefined && response.result.error_message != undefined) {
@@ -21,12 +22,25 @@ var Form = {
   },
   init : function () {
     $('form#register-form').bind('ajax:before', function(evt, data, status, xhr){
+      Form.Preloader.show();
       $('#form-submit').prop('disabled', true);
     })
 
     $('form#register-form').bind('ajax:success', function(evt, data, status, xhr){
       Form.check(data.request_id);
     })
+  }
+}
+
+Form.Preloader = {
+  show : function () {
+    var element = $('#form-submit');
+    element.data('original-text', element.html());
+    element.html(element.data('loading-text'));
+  },
+  hide : function () {
+    var element = $('#form-submit');
+    element.html(element.data('original-text'));
   }
 }
 

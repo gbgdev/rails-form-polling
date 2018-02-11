@@ -33,7 +33,7 @@
       </div>
     </div>
     <div align="center">
-      <%= submit_tag "Submit form", class: 'btn btn-primary', id: 'form-submit' %>
+      <%= button_tag "Submit form", class: 'btn btn-primary', id: 'form-submit', 'data-loading-text' => "<i class='fa fa-circle-o-notch fa-spin'></i> Submitting form..." %>
     </div>
   <% end %>
 </div>
