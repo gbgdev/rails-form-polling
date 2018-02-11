@@ -11,5 +11,14 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def register_check
+    status = Sidekiq::Status::status(params['request_id'])
+
+    respond_to do |format|
+      format.json do
+        render json: { status: status }
+      end
+    end
   end
 end
