@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def register
     worker_id = RegistrationWorker.perform_async(params)
@@ -9,8 +8,15 @@ class PagesController < ApplicationController
   end
 
   def register_check
-    status = Sidekiq::Status::status(params['request_id'])
+    request_id = params['request_id']
+    status = Sidekiq::Status::status(request_id)
 
-    render json: { status: status }
+    response = { status: status }
+
+    if status == :complete
+      response['result'] = JSON.parse Redis.current.get(request_id)
+    end
+
+    render json: response
   end
 end
