@@ -6,11 +6,18 @@ var Form = {
 
       if (status == 'complete') {
         $('#form-submit').prop('disabled', false);
+
+        if (response.result != undefined && response.result.error_message != undefined) {
+          Form.error_alert(response.result.error_message);
+        }
       }
       else {
         setTimeout(function () { Form.check(request_id) }, 2000);
       }
     });
+  },
+  error_alert : function (message) {
+    $('#error-alert').html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
   },
   init : function () {
     $('form#register-form').bind('ajax:before', function(evt, data, status, xhr){
