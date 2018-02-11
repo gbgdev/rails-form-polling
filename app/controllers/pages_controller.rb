@@ -3,6 +3,13 @@ class PagesController < ApplicationController
   end
 
   def register
-    redirect_to action: 'index'
+    worker_id = RegistrationWorker.perform_async(params)
+
+    respond_to do |format|
+      format.json do
+        render json: { success: true, request_id: worker_id }
+      end
+    end
+  end
   end
 end
