@@ -4,31 +4,31 @@
     <div class="form-group row">
       <label for="example-text-input" class="col-2 col-form-label">Name</label>
       <div class="col-10">
-        <input class="form-control" type="text" value="Foo bar">
+        <%= text_field_tag :name, 'Foo bar', class: 'form-control' %>
       </div>
     </div>
     <div class="form-group row">
       <label for="example-email-input" class="col-2 col-form-label">Email</label>
       <div class="col-10">
-        <input class="form-control" type="email" value="example@form-polling.com">
+        <%= text_field_tag :email, 'example@form-polling.com', class: 'form-control', type: 'email' %>
       </div>
     </div>
     <div class="form-group row">
       <label for="example-search-input" class="col-2 col-form-label">Entity number</label>
       <div class="col-10">
-        <input class="form-control" type="text" value="3812749082">
+        <%= text_field_tag :entity_number, '3812749082', class: 'form-control' %>
       </div>
     </div>
     <div class="form-group row">
       <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
       <div class="col-10">
-        <input class="form-control" type="tel" value="+43 073-5028729">
+        <%= text_field_tag :telephone, '+43 073-5028729', class: 'form-control', type: 'tel' %>
       </div>
     </div>
     <div class="form-group row">
       <label for="example-date-input" class="col-2 col-form-label">Birth date</label>
       <div class="col-10">
-        <input class="form-control" type="date" value="1988-05-13">
+        <%= text_field_tag :birth_date, '1988-05-13', class: 'form-control', type: 'date' %>
       </div>
     </div>
     <div align="center">
